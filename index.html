@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Practical Progressive Project · Los Angeles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --ink: #1a1108;
+      --cream: #f5f0e8;
+      --parchment: #ede5d0;
+      --gold: #c9a84c;
+      --gold-light: #e2c97e;
+      --red: #8b1a1a;
+      --red-bright: #c0392b;
+      --white: #fdfaf4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background-color: var(--black);
+      border-bottom: 3px solid var(--gold);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-ornament {
+      width: 100%;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--gold) 0px,
+        var(--gold) 20px,
+        transparent 20px,
+        transparent 24px,
+        var(--red) 24px,
+        var(--red) 44px,
+        transparent 44px,
+        transparent 48px
+      );
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header-seal {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      margin-bottom: 24px;
+      position: relative;
+      background: radial-gradient(circle at 50% 50%, #1a1108 0%, #0a0a0a 100%);
+      box-shadow: 0 0 0 6px rgba(201,168,76,0.15), inset 0 0 20px rgba(201,168,76,0.1);
+    }
+
+    .header-seal::before {
+      content: "★";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+      font-size: 36px;
+      color: var(--gold);
+      text-shadow: 0 0 12px rgba(201,168,76,0.5);
+    }
+
+    .eyebrow {
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    h1 span.accent {
+      color: var(--gold);
+    }
+
+    .header-rule {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 28px auto;
+      max-width: 600px;
+    }
+
+    .header-rule::before,
+    .header-rule::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    .header-rule-diamond {
+      color: var(--gold);
+      font-size: 10px;
+    }
+
+    .tagline {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-style: italic;
+      color: var(--parchment);
+      opacity: 0.9;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 24px 36px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      padding: 8px 20px;
+      border: 1px solid rgba(201,168,76,0.3);
+      transition: all 0.2s;
+    }
+
+    nav a:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-label {
+      font-family: 'EB Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.3;
+    }
+
+    /* ─── MISSION ─── */
+    #mission {
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+
+    .mission-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 40px;
+      max-width: 820px;
+    }
+
+    .mission-headline em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .mission-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 700px) {
+      .mission-body { grid-template-columns: 1fr; }
+    }
+
+    .mission-body p {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--parchment);
+    }
+
+    .mission-body p + p {
+      margin-top: 20px;
+    }
+
+    .pullquote {
+      border-left: 3px solid var(--gold);
+      padding: 20px 28px;
+      background: rgba(201,168,76,0.06);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      line-height: 1.5;
+      color: var(--gold-light);
+      font-style: italic;
+    }
+
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2px;
+      margin-top: 60px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+
+    .criterion {
+      background: var(--black);
+      padding: 28px 24px;
+      border-right: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .criterion:last-child { border-right: none; }
+
+    .criterion-icon {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .criterion h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .criterion p {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: rgba(245,240,232,0.7);
+      line-height: 1.5;
+    }
+
+    /* ─── ENDORSEMENTS ─── */
+    #endorsements {
+      padding-top: 72px;
+    }
+
+    .endorsements-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .endorsements-sub {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: rgba(245,240,232,0.6);
+      margin-bottom: 52px;
+    }
+
+    .race-card {
+      border: 1px solid rgba(201,168,76,0.25);
+      margin-bottom: 2px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .race-card:hover {
+      border-color: var(--gold);
+    }
+
+    .race-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold);
+    }
+
+    .race-card-inner {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+    }
+
+    @media (max-width: 720px) {
+      .race-card-inner { grid-template-columns: 1fr; }
+    }
+
+    .race-meta {
+      background: rgba(201,168,76,0.07);
+      padding: 36px 32px;
+      border-right: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .race-office {
+      font-family: 'EB Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .race-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .endorsement-badge {
+      display: inline-block;
+      background: var(--red);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      margin-bottom: 8px;
+    }
+
+    .endorsee-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1.2;
+    }
+
+    .endorsee-name.placeholder {
+      color: rgba(201,168,76,0.35);
+      font-style: italic;
+      font-size: 1.15rem;
+    }
+
+    .race-rationale {
+      padding: 36px 40px;
+    }
+
+    .rationale-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+      margin-bottom: 16px;
+    }
+
+    .rationale-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.85);
+    }
+
+    .rationale-text.placeholder {
+      color: rgba(245,240,232,0.35);
+      font-style: italic;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      border-top: 3px solid var(--gold);
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .footer-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: rgba(245,240,232,0.5);
+      line-height: 1.7;
+    }
+
+    .footer-divider {
+      color: var(--gold);
+      opacity: 0.4;
+      margin: 24px 0;
+      letter-spacing: 0.5em;
+      font-size: 12px;
+    }
+
+    /* ─── DECORATIVE RULE ─── */
+    .ornament-rule {
+      text-align: center;
+      color: var(--gold);
+      opacity: 0.4;
+      font-size: 18px;
+      letter-spacing: 12px;
+      margin: 0 auto 48px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-ornament"></div>
+    <div class="header-inner">
+      <div class="header-seal"></div>
+      <p class="eyebrow">Los Angeles · Est. 2026</p>
+      <h1>Practical <span class="accent">Progressive</span><br>Project</h1>
+      <div class="header-rule">
+        <span class="header-rule-diamond">◆ ◆ ◆</span>
+      </div>
+      <p class="tagline">The art of the possible, applied to the work that matters.</p>
+    </div>
+    <nav>
+      <a href="#mission">Our Mission</a>
+      <a href="#endorsements">Positions</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.demadtech.com/c/ppp">Support Us</a>
+    </nav>
+  </header>
+
+  <!-- MISSION -->
+  <section id="mission">
+    <p class="section-label">Our Philosophy</p>
+    <h2 class="mission-headline">
+      We back the candidates most likely to <em>actually improve</em> the most lives<br>
+      without trampling anyone else's in the process.
+    </h2>
+
+    <div class="mission-body">
+      <div>
+        <p>
+          Progress is not a purity test. It is a ledger: lives improved, rights protected, problems
+          solved, weighed against what it cost to get there and who paid that cost. We watch that ledger.
+        </p>
+        <p>
+          A candidate who cannot build a coalition cannot build a bike lane. Passion is the starting
+          point, not the credential. We back whoever gives us the best shot at measurable, durable
+          progress, even when that's not our first fantasy pick.
+        </p>
+      </div>
+      <div>
+        <div class="pullquote">
+          "The best is not the one who is always right, but the one who gets things right
+          often enough to matter, and builds enough trust to do it again."
+        </div>
+        <br />
+        <p>
+          Not a crusade. Not a brand. A working theory about how change actually happens in a large,
+          complicated city where everyone has something at stake. We are progressives who believe in
+          winning elections and then governing well. Both halves matter.
+        </p>
+      </div>
+    </div>
+
+    <div class="criteria-grid">
+      <div class="criterion">
+        <div class="criterion-icon">⚖️</div>
+        <h3>Positions That Hold Up</h3>
+        <p>What do they actually stand for, and does it survive contact with reality?</p>
+      </div>
+      <div class="criterion">
+        <div class="criterion-icon">🤝</div>
+        <h3>Can They Work With Others</h3>
+        <p>Governing is coalition-building. Ideological purity that can't pass a vote doesn't count.</p>
+      </div>
+      <div class="criterion">
+        <div class="criterion-icon">🧠</div>
+        <h3>They Know the Job</h3>
+        <p>Running a city department is not the same as running for office. We check both.</p>
+      </div>
+      <div class="criterion">
+        <div class="criterion-icon">🚫</div>
+        <h3>No One Gets Thrown Under</h3>
+        <p>Progress that comes at the expense of a vulnerable group isn't progress. Full stop.</p>
+      </div>
+      <div class="criterion">
+        <div class="criterion-icon">📊</div>
+        <h3>Track Record Counts</h3>
+        <p>We give serious weight to what candidates have already done, not just what they promise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENDORSEMENTS -->
+  <section id="endorsements">
+    <p class="section-label">November 3, 2026</p>
+    <h2 class="endorsements-headline">Our Ballot Measure Positions</h2>
+    <p class="endorsements-sub">Statewide propositions. Here's where we stand.</p>
+
+    <div class="ornament-rule">✦</div>
+
+    <!-- PROP 39 -->
+    <div class="race-card">
+      <div class="race-card-inner">
+        <div class="race-meta">
+          <p class="race-office">Statewide Proposition</p>
+          <p class="race-title">Proposition 39 · Voter ID</p>
+          <span class="endorsement-badge">Our Position</span><br/>
+          <span class="endorsee-name">Vote No</span>
+        </div>
+        <div class="race-rationale">
+          <p class="rationale-label">Our Rationale</p>
+          <p class="rationale-text">
+            Prop 39 would amend the state constitution to require government-issued ID every time
+            a Californian votes, add an ID number to every mail ballot envelope, and order counties
+            to re-verify the citizenship of people already on the rolls. The Legislative Analyst
+            puts the cost in the tens to low hundreds of millions of dollars a year. That is real
+            money spent to make voting harder for seniors, renters who move, and working people
+            without a current ID, in exchange for solving a problem California's elections do not
+            have. Apply the ledger: lives improved, none; rights protected, fewer. No.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROP 4 -->
+    <div class="race-card">
+      <div class="race-card-inner">
+        <div class="race-meta">
+          <p class="race-office">Statewide Proposition</p>
+          <p class="race-title">Proposition 4 · Public Campaign Financing</p>
+          <span class="endorsement-badge">Our Position</span><br/>
+          <span class="endorsee-name">Vote Yes</span>
+        </div>
+        <div class="race-rationale">
+          <p class="rationale-label">Our Rationale</p>
+          <p class="rationale-text">
+            Prop 4 repeals the statewide ban on public financing of campaigns. It does not create
+            a program; it lets cities, counties and the state build one if their voters want it,
+            with guardrails on where the money comes from and who qualifies. Los Angeles already
+            runs matching funds and it is one of the few reasons a candidate without a donor
+            network can compete here. Letting the rest of California make that choice is cheap,
+            practical, and overdue. Yes.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-logo">Practical Progressive Project</div>
+      <p class="footer-text">
+        A Los Angeles independent expenditure committee. In 2026 we are focused on statewide
+        ballot measures, backing the practical choice over the symbolic one.
+      </p>
+      <p class="footer-text">
+        <a href="https://www.demadtech.com/c/ppp" style="color: var(--gold); text-decoration: underline;">Support our campaigns on DemAdtech →</a>
+      </p>
+      <div class="footer-divider">◆ ◆ ◆</div>
+      <p class="footer-text">
+        Paid for by Practical Progressive Project, FPPC ID #1491643.<br/>
+        Contact: <a href="mailto:mgallagher@practicalprogressive.org" style="color: var(--gold);">mgallagher@practicalprogressive.org</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
